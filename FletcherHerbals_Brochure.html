@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Fletcher Herbals – Tri-fold Brochure</title>
+<style>
+  /* ===== Page setup: A4 landscape, no margins ===== */
+  @page {
+    size: A4 landscape;
+    margin: 0;
+  }
+
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&family=Caveat:wght@500;700&display=swap');
+
+  :root {
+    --cream:        #F2E8D2;
+    --cream-deep:   #E8DBBE;
+    --sage:         #7C8A6E;
+    --sage-deep:    #5A6850;
+    --sage-soft:    #B5C0A4;
+    --terracotta:   #C26B4F;
+    --terracotta-d: #A0533A;
+    --gold:         #B89968;
+    --ink:          #2F2A22;
+    --ink-soft:     #574E3F;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    font-family: 'Inter', sans-serif;
+    color: var(--ink);
+    background: #ddd;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ===== Each page is one A4 landscape sheet ===== */
+  .page {
+    width: 297mm;
+    height: 210mm;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    page-break-after: always;
+    background: var(--cream);
+    position: relative;
+    overflow: hidden;
+  }
+  .page:last-child { page-break-after: auto; }
+
+  .panel {
+    width: 99mm;
+    height: 210mm;
+    padding: 12mm 9mm;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Subtle vertical fold guides (won't print noticeable but keeps separation) */
+  .fold-line-1, .fold-line-2 {
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 0;
+    border-left: 1px dashed rgba(0,0,0,0.06);
+    pointer-events: none;
+  }
+  .fold-line-1 { left: 99mm; }
+  .fold-line-2 { left: 198mm; }
+
+  /* ============ TYPOGRAPHY ============ */
+  .serif    { font-family: 'Cormorant Garamond', serif; }
+  .script   { font-family: 'Caveat', cursive; }
+  .sans     { font-family: 'Inter', sans-serif; }
+
+  h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; font-weight: 500; }
+
+  /* ============ SHARED COMPONENTS ============ */
+  .botanical {
+    position: absolute;
+    opacity: 0.10;
+    pointer-events: none;
+  }
+
+  .panel-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26pt;
+    line-height: 1.05;
+    font-weight: 500;
+    color: var(--sage-deep);
+    margin-bottom: 2mm;
+  }
+  .panel-eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 7.5pt;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 4mm;
+    font-weight: 500;
+  }
+  .divider {
+    width: 22mm;
+    height: 1px;
+    background: var(--sage);
+    margin: 4mm 0 5mm 0;
+  }
+  .divider.center { margin-left: auto; margin-right: auto; }
+  .divider.gold { background: var(--gold); }
+
+  /* ====== PAGE 1 — OUTSIDE ====== */
+
+  /* ---- Panel A: BACK COVER (testimonials + contact) ---- */
+  .back-cover {
+    background: var(--cream);
+    padding: 11mm 9mm 10mm 9mm;
+  }
+  .back-cover .heading {
+    text-align: center;
+    margin-bottom: 4mm;
+  }
+  .back-cover .panel-eyebrow { text-align: center; margin-bottom: 2mm; }
+  .back-cover .panel-title { text-align: center; font-size: 19pt; line-height: 1.05; }
+  .back-cover .testimonial {
+    margin-bottom: 3.5mm;
+    padding: 3mm 3.5mm 3mm 4.5mm;
+    border-left: 1.5px solid var(--terracotta);
+    background: rgba(255,255,255,0.35);
+  }
+  .back-cover .testimonial p {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 9pt;
+    line-height: 1.4;
+    color: var(--ink);
+    margin-bottom: 1.5mm;
+  }
+  .back-cover .testimonial .attribution {
+    font-family: 'Inter', sans-serif;
+    font-size: 6.5pt;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .cta-block {
+    margin-top: auto;
+    text-align: center;
+    padding-top: 3.5mm;
+    border-top: 1px solid var(--sage-soft);
+  }
+  .cta-block .begin {
+    font-family: 'Caveat', cursive;
+    font-size: 17pt;
+    color: var(--terracotta);
+    line-height: 1;
+    margin-bottom: 1.5mm;
+  }
+  .cta-block .ritual-line {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 10pt;
+    color: var(--sage-deep);
+    font-style: italic;
+    margin-bottom: 3mm;
+  }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.8mm;
+    font-family: 'Inter', sans-serif;
+    font-size: 7.8pt;
+    color: var(--ink);
+    text-align: center;
+    line-height: 1.4;
+  }
+  .contact-grid .row { display: block; }
+  .contact-grid .label {
+    color: var(--terracotta);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-size: 6.2pt;
+    display: block;
+    margin-top: 1.5mm;
+    font-weight: 600;
+  }
+
+  /* ---- Panel B: INSIDE FLAP (Our Roots) ---- */
+  .roots {
+    background: linear-gradient(180deg, var(--cream) 0%, var(--cream-deep) 100%);
+    padding: 11mm 9mm 9mm 9mm;
+    text-align: center;
+  }
+  .roots .panel-eyebrow { text-align: center; margin-bottom: 2mm; }
+  .roots .panel-title  { text-align: center; font-size: 22pt; line-height: 1.05; margin-bottom: 2mm; }
+  .roots .script-tag {
+    font-family: 'Caveat', cursive;
+    font-size: 15pt;
+    color: var(--terracotta);
+    margin-bottom: 3mm;
+    line-height: 1;
+  }
+  .roots .story {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 10pt;
+    line-height: 1.45;
+    color: var(--ink);
+    margin: 0 auto 4mm auto;
+    text-align: left;
+  }
+  .roots .story p { margin-bottom: 2mm; }
+  .roots .jar-hero {
+    text-align: center;
+    margin: 0 auto 3mm auto;
+  }
+  .roots .jar-hero img {
+    max-width: 50mm;
+    max-height: 60mm;
+    height: auto;
+    display: inline-block;
+    filter: drop-shadow(0 3px 6px rgba(0,0,0,0.15));
+  }
+  .roots .signature {
+    margin-top: auto;
+    text-align: center;
+  }
+  .roots .signature .from {
+    font-family: 'Inter', sans-serif;
+    font-size: 7pt;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--sage-deep);
+    margin-bottom: 1mm;
+  }
+  .roots .signature .name {
+    font-family: 'Caveat', cursive;
+    font-size: 19pt;
+    color: var(--terracotta-d);
+    line-height: 1;
+  }
+
+  /* ---- Panel C: FRONT COVER ---- */
+  .front-cover {
+    background:
+      radial-gradient(ellipse at 50% 22%, rgba(232,194,138,0.15) 0%, rgba(232,194,138,0) 55%),
+      linear-gradient(180deg, #4D5A45 0%, #3E4A38 100%);
+    color: var(--cream);
+    padding: 14mm 9mm;
+    text-align: center;
+    justify-content: space-between;
+  }
+  .front-cover .top-meta {
+    font-family: 'Inter', sans-serif;
+    font-size: 7pt;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: var(--cream-deep);
+    margin-bottom: 4mm;
+  }
+  /* Cream circular plinth so the dark "HOMEMADE" / "NATURAL PRODUCTS" arc text shows */
+  .logo-plinth {
+    width: 64mm;
+    height: 64mm;
+    border-radius: 50%;
+    background: var(--cream);
+    margin: 0 auto 5mm auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.06), 0 4px 14px rgba(0,0,0,0.28);
+    position: relative;
+    padding: 4mm;
+  }
+  .logo-plinth img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .cover-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 16pt;
+    line-height: 1.25;
+    color: var(--cream);
+    margin: 3mm auto 4mm auto;
+    max-width: 70mm;
+  }
+  .cover-sub {
+    font-family: 'Inter', sans-serif;
+    font-size: 8pt;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    color: var(--cream-deep);
+    margin-bottom: 6mm;
+  }
+  .cover-bottom {
+    margin-top: auto;
+    border-top: 1px solid rgba(242,232,210,0.35);
+    padding-top: 5mm;
+    font-family: 'Inter', sans-serif;
+    font-size: 7.5pt;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--cream-deep);
+  }
+  .cover-bottom .est {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 12pt;
+    letter-spacing: 0.05em;
+    text-transform: none;
+    color: var(--cream);
+    margin-bottom: 1mm;
+    display: block;
+  }
+
+  /* ====== PAGE 2 — INSIDE ====== */
+
+  /* ---- Panel D: The Ritual ---- */
+  .ritual {
+    background: var(--cream);
+    padding: 11mm 8mm 9mm 9mm;
+  }
+  .ritual .panel-title { font-size: 24pt; }
+  .ritual .intro {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 9.5pt;
+    line-height: 1.45;
+    color: var(--ink-soft);
+    margin-bottom: 4mm;
+  }
+  .step {
+    display: grid;
+    grid-template-columns: 8mm 1fr;
+    gap: 2.5mm;
+    margin-bottom: 3mm;
+    align-items: start;
+  }
+  .step .num {
+    width: 8mm;
+    height: 8mm;
+    border-radius: 50%;
+    background: var(--terracotta);
+    color: var(--cream);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 11pt;
+    font-weight: 600;
+    line-height: 1;
+  }
+  .step .body .title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 11.5pt;
+    font-weight: 600;
+    color: var(--sage-deep);
+    line-height: 1;
+    margin-bottom: 0.8mm;
+  }
+  .step .body .desc {
+    font-family: 'Inter', sans-serif;
+    font-size: 7.6pt;
+    line-height: 1.4;
+    color: var(--ink);
+  }
+  .ritual-tip {
+    margin-top: auto;
+    background: rgba(124,138,110,0.12);
+    border-left: 2px solid var(--sage);
+    padding: 3mm 3.5mm;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 8.5pt;
+    color: var(--sage-deep);
+    line-height: 1.4;
+  }
+  .ritual-tip strong {
+    font-style: normal;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-size: 7pt;
+    color: var(--terracotta);
+    display: block;
+    margin-bottom: 1.5mm;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+  }
+
+  /* ---- Panel E: Ingredients ---- */
+  .herbs {
+    background: linear-gradient(180deg, var(--cream-deep) 0%, var(--cream) 100%);
+    padding: 10mm 7mm 8mm 8mm;
+  }
+  .herbs .panel-eyebrow { text-align: center; margin-bottom: 2.5mm; }
+  .herbs .panel-title { text-align: center; font-size: 22pt; line-height: 1.05; }
+  .herbs .sub-title {
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 9pt;
+    color: var(--ink-soft);
+    margin-bottom: 3.5mm;
+  }
+  .herbs .divider { margin: 2mm auto 3mm auto; }
+  .herb-list {
+    list-style: none;
+  }
+  .herb {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin-bottom: 1.6mm;
+    padding-bottom: 1.6mm;
+    border-bottom: 1px dotted rgba(124,138,110,0.4);
+  }
+  .herb:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
+  .herb .name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 10pt;
+    font-weight: 600;
+    color: var(--terracotta-d);
+    letter-spacing: 0.02em;
+    margin-bottom: 0.3mm;
+    line-height: 1.1;
+  }
+  .herb .name .latin {
+    font-style: italic;
+    font-weight: 400;
+    font-size: 7.5pt;
+    color: var(--sage-deep);
+    margin-left: 1.5mm;
+  }
+  .herb .desc {
+    font-family: 'Inter', sans-serif;
+    font-size: 6.8pt;
+    line-height: 1.35;
+    color: var(--ink);
+  }
+
+  /* ---- Panel F: Find Your Match ---- */
+  .matchmaker {
+    background: var(--cream);
+    padding: 11mm 8mm 9mm 8mm;
+  }
+  .matchmaker .panel-title { font-size: 22pt; line-height: 1.05; }
+  .matchmaker .intro {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 9pt;
+    line-height: 1.45;
+    color: var(--ink-soft);
+    margin-bottom: 3.5mm;
+  }
+  .match-row {
+    margin-bottom: 2.4mm;
+    padding-bottom: 2mm;
+    border-bottom: 1px dotted rgba(124,138,110,0.45);
+  }
+  .match-row:last-of-type { border-bottom: none; }
+  .match-row .concern {
+    font-family: 'Inter', sans-serif;
+    font-size: 6.2pt;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 0.8mm;
+    font-weight: 600;
+  }
+  .match-row .answer {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 9.5pt;
+    line-height: 1.3;
+    color: var(--sage-deep);
+    font-weight: 500;
+  }
+  .match-row .answer .arrow {
+    color: var(--terracotta);
+    margin-right: 1mm;
+    font-style: italic;
+  }
+  .promise-block {
+    margin-top: auto;
+    background: var(--sage-deep);
+    color: var(--cream);
+    padding: 4mm 4mm;
+    text-align: center;
+    border-radius: 1mm;
+  }
+  .promise-block .label {
+    font-family: 'Inter', sans-serif;
+    font-size: 6.2pt;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    color: var(--cream-deep);
+    margin-bottom: 1.5mm;
+    font-weight: 600;
+  }
+  .promise-block .promise {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 9.5pt;
+    line-height: 1.35;
+  }
+
+  /* SVG botanicals positioned around panels */
+  .leaf-deco {
+    position: absolute;
+    width: 38mm;
+    opacity: 0.18;
+    pointer-events: none;
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     PAGE 1  —  OUTSIDE OF BROCHURE
+     Layout when laid flat (printed-side up):
+     [ BACK COVER | INSIDE FLAP | FRONT COVER ]
+============================================================ -->
+<section class="page outside">
+
+  <!-- ============ PANEL A — BACK COVER ============ -->
+  <div class="panel back-cover">
+    <svg class="leaf-deco" style="top:-8mm; right:-8mm; transform:rotate(35deg);" viewBox="0 0 100 100">
+      <g fill="none" stroke="#7C8A6E" stroke-width="1.2">
+        <path d="M50 10 C 30 30, 30 70, 50 90 C 70 70, 70 30, 50 10 Z"/>
+        <path d="M50 10 L 50 90"/>
+        <path d="M50 25 L 35 35 M50 35 L 33 45 M50 45 L 32 55 M50 55 L 33 65 M50 65 L 36 75"/>
+        <path d="M50 25 L 65 35 M50 35 L 67 45 M50 45 L 68 55 M50 55 L 67 65 M50 65 L 64 75"/>
+      </g>
+    </svg>
+
+    <div class="heading">
+      <div class="panel-eyebrow">Words from our community</div>
+      <div class="panel-title">Loved by hands<br>like yours</div>
+      <div class="divider center gold"></div>
+    </div>
+
+    <div class="testimonial">
+      <p>“Two months in, my postnatal hair fall has completely calmed. This jar lives on my bedside table now — it's my Sunday ritual.”</p>
+      <div class="attribution">— Amelia, Hamilton NSW</div>
+    </div>
+
+    <div class="testimonial">
+      <p>“My scalp used to feel angry and itchy by midweek. One jar in and the calm is unreal. The smell alone is therapy.”</p>
+      <div class="attribution">— Priya R., Newcastle</div>
+    </div>
+
+    <div class="testimonial">
+      <p>“I bought a jar for my mum and now my whole family is on Fletcher. Thicker, shinier, healthier — the real deal.”</p>
+      <div class="attribution">— Jenna, Mayfield</div>
+    </div>
+
+    <div class="cta-block">
+      <div class="begin">begin your ritual</div>
+      <div class="ritual-line">$35 a jar · hand-poured to order</div>
+      <div class="contact-grid">
+        <span class="label">Order</span>
+        <span class="row">fletcherherbals.com</span>
+        <span class="row">DM @Fletcherherbals</span>
+        <span class="label">Say hello</span>
+        <span class="row">0408 725 942</span>
+        <span class="row">Fletcher · Newcastle, NSW</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ PANEL B — INSIDE FLAP (OUR ROOTS) ============ -->
+  <div class="panel roots">
+    <svg class="leaf-deco" style="top:-10mm; left:50%; transform:translateX(-50%) rotate(0deg); opacity:0.15;" viewBox="0 0 100 100">
+      <g fill="none" stroke="#5A6850" stroke-width="1">
+        <path d="M50 5 Q 50 50, 50 95"/>
+        <path d="M50 20 Q 30 25, 20 35"/>
+        <path d="M50 30 Q 70 35, 80 45"/>
+        <path d="M50 40 Q 28 48, 18 60"/>
+        <path d="M50 50 Q 72 58, 82 70"/>
+        <path d="M50 60 Q 30 68, 22 80"/>
+      </g>
+    </svg>
+
+    <div class="panel-eyebrow">Our Roots</div>
+    <div class="panel-title">Grandma's<br>garden, in a jar</div>
+    <div class="script-tag">est. 2022</div>
+
+    <div class="story">
+      <p>Our journey began in the garden of our beloved grandma — where she shared her age-old herbal beauty secrets, picking, drying, and infusing alongside us.</p>
+      <p>Inspired by her wisdom, we've crafted a small line of homegrown hair oil that captures the essence of her nurturing love &amp; timeless remedies — fostering beauty and well-being, naturally.</p>
+    </div>
+
+    <div class="jar-hero">
+      <img src="jar_small.png" alt="Fletcher Herbals Natural Hair Oil jar">
+    </div>
+
+    <div class="signature">
+      <div class="from">With love, from</div>
+      <div class="name">Fletcher Herbals</div>
+    </div>
+  </div>
+
+  <!-- ============ PANEL C — FRONT COVER ============ -->
+  <div class="panel front-cover">
+    <svg class="botanical" style="top:8mm; left:8mm; width:22mm;" viewBox="0 0 100 100">
+      <g fill="none" stroke="#E8C28A" stroke-width="1.5" opacity="0.5">
+        <path d="M20 80 Q 50 40, 80 20"/>
+        <ellipse cx="35" cy="65" rx="6" ry="3" transform="rotate(-30 35 65)"/>
+        <ellipse cx="50" cy="50" rx="6" ry="3" transform="rotate(-30 50 50)"/>
+        <ellipse cx="65" cy="35" rx="6" ry="3" transform="rotate(-30 65 35)"/>
+      </g>
+    </svg>
+    <svg class="botanical" style="bottom:8mm; right:8mm; width:22mm; transform:rotate(180deg);" viewBox="0 0 100 100">
+      <g fill="none" stroke="#E8C28A" stroke-width="1.5" opacity="0.5">
+        <path d="M20 80 Q 50 40, 80 20"/>
+        <ellipse cx="35" cy="65" rx="6" ry="3" transform="rotate(-30 35 65)"/>
+        <ellipse cx="50" cy="50" rx="6" ry="3" transform="rotate(-30 50 50)"/>
+        <ellipse cx="65" cy="35" rx="6" ry="3" transform="rotate(-30 65 35)"/>
+      </g>
+    </svg>
+
+    <div class="top-meta">Homemade · Herbal · Newcastle</div>
+
+    <div class="logo-plinth">
+      <img src="logo_small.png" alt="Fletcher Herbals">
+    </div>
+
+    <div class="cover-tagline">“Rooted in grandma's garden,<br>poured for your hair.”</div>
+    <div class="cover-sub">A Natural Hair Oil Ritual</div>
+
+    <div class="cover-bottom">
+      <span class="est">Est. 2022</span>
+      Fletcher · Newcastle, NSW
+    </div>
+  </div>
+
+  <div class="fold-line-1"></div>
+  <div class="fold-line-2"></div>
+</section>
+
+
+<!-- ============================================================
+     PAGE 2  —  INSIDE OF BROCHURE
+     Layout when laid flat (printed-side up):
+     [ THE RITUAL | THE HERBS | FIND YOUR MATCH ]
+============================================================ -->
+<section class="page inside">
+
+  <!-- ============ PANEL D — THE RITUAL ============ -->
+  <div class="panel ritual">
+    <svg class="leaf-deco" style="top:-6mm; right:-6mm; transform:rotate(20deg); opacity:0.14;" viewBox="0 0 100 100">
+      <g fill="none" stroke="#7C8A6E" stroke-width="1">
+        <path d="M50 5 C 30 30, 30 70, 50 95 C 70 70, 70 30, 50 5 Z"/>
+        <path d="M50 5 L 50 95"/>
+      </g>
+    </svg>
+
+    <div class="panel-eyebrow">How to use</div>
+    <div class="panel-title">The Ritual</div>
+    <div class="divider"></div>
+    <p class="intro">Slow rituals make the best results. Set aside an hour for yourself — this is more than oil, it's a moment.</p>
+
+    <div class="step">
+      <div class="num">1</div>
+      <div class="body">
+        <div class="title">Warm</div>
+        <div class="desc">Place the jar in a bowl of warm water for 2–3 minutes to gently activate the herbs.</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="num">2</div>
+      <div class="body">
+        <div class="title">Section</div>
+        <div class="desc">Brush hair through and divide into four soft sections — easier to reach every part of the scalp.</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="num">3</div>
+      <div class="body">
+        <div class="title">Massage</div>
+        <div class="desc">Apply a small amount to your fingertips and massage into the scalp in slow circles for 5–10 minutes.</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="num">4</div>
+      <div class="body">
+        <div class="title">Rest</div>
+        <div class="desc">Cover with a warm towel or shower cap. Leave for at least an hour — or overnight for a deep treatment.</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="num">5</div>
+      <div class="body">
+        <div class="title">Wash</div>
+        <div class="desc">Rinse with a mild, sulphate-free shampoo. Repeat 1–2 times a week for visible results.</div>
+      </div>
+    </div>
+
+    <div class="ritual-tip">
+      <strong>A little goes a long way</strong>
+      One jar lasts most rituals 6–8 weeks. Store in a cool, dry place — out of direct sunlight.
+    </div>
+  </div>
+
+  <!-- ============ PANEL E — THE HERBS ============ -->
+  <div class="panel herbs">
+    <svg class="leaf-deco" style="top:-8mm; left:50%; transform:translateX(-50%); opacity:0.12;" viewBox="0 0 100 100">
+      <g fill="none" stroke="#5A6850" stroke-width="1">
+        <circle cx="50" cy="50" r="35"/>
+        <path d="M15 50 L 85 50 M50 15 L 50 85"/>
+        <path d="M25 25 L 75 75 M25 75 L 75 25"/>
+      </g>
+    </svg>
+
+    <div class="panel-eyebrow">What's inside</div>
+    <div class="panel-title">Crafted from<br>the earth</div>
+    <div class="divider center"></div>
+    <p class="sub-title">A small-batch blend of ten time-honoured herbs &amp; oils.</p>
+
+    <div class="herb-list">
+      <div class="herb">
+        <div class="name">Rosemary <span class="latin">— Rosmarinus officinalis</span></div>
+        <div class="desc">Stimulates the follicle, awakens circulation and encourages strong, healthy growth.</div>
+      </div>
+      <div class="herb">
+        <div class="name">Lavender <span class="latin">— Lavandula</span></div>
+        <div class="desc">Calms an irritated scalp, soothes itchiness and gently lifts dandruff.</div>
+      </div>
+      <div class="herb">
+        <div class="name">Hibiscus <span class="latin">— Hibiscus rosa-sinensis</span></div>
+        <div class="desc">Strengthens follicles, deepens natural shine and softens every strand.</div>
+      </div>
+      <div class="herb">
+        <div class="name">Curry Leaf <span class="latin">— Murraya koenigii</span></div>
+        <div class="desc">A grandma classic — nourishes the roots and prevents premature greying.</div>
+      </div>
+      <div class="herb">
+        <div class="name">Aloe Vera <span class="latin">— Aloe barbadensis</span></div>
+        <div class="desc">Vitamin-rich hydration that calms inflammation and brings life back to dry hair.</div>
+      </div>
+      <div class="herb">
+        <div class="name">Oregano <span class="latin">— Origanum vulgare</span></div>
+        <div class="desc">Naturally antibacterial — fights fungal flakes and supports a clear, healthy scalp.</div>
+      </div>
+      <div class="herb">
+        <div class="name">Peppermint <span class="latin">— Mentha piperita</span></div>
+        <div class="desc">A cool tingle that wakes the follicle and brings clarity to mind &amp; scalp.</div>
+      </div>
+      <div class="herb">
+        <div class="name">Castor Oil <span class="latin">— Ricinus communis</span></div>
+        <div class="desc">Rich in ricinoleic acid — the heavyweight for thickness, length and edges.</div>
+      </div>
+      <div class="herb">
+        <div class="name">Black Seed <span class="latin">— Nigella sativa</span></div>
+        <div class="desc">A nutrient powerhouse — strengthens strands and reduces breakage at the root.</div>
+      </div>
+      <div class="herb">
+        <div class="name">Vitamin E</div>
+        <div class="desc">Antioxidant protection — shields hair from damage and locks in shine.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ PANEL F — FIND YOUR MATCH ============ -->
+  <div class="panel matchmaker">
+    <svg class="leaf-deco" style="bottom:-10mm; left:-10mm; transform:rotate(-25deg); opacity:0.14;" viewBox="0 0 100 100">
+      <g fill="none" stroke="#7C8A6E" stroke-width="1">
+        <path d="M50 5 C 30 30, 30 70, 50 95 C 70 70, 70 30, 50 5 Z"/>
+        <path d="M50 5 L 50 95"/>
+        <path d="M50 25 L 35 35 M50 45 L 32 55 M50 65 L 36 75"/>
+        <path d="M50 25 L 65 35 M50 45 L 68 55 M50 65 L 64 75"/>
+      </g>
+    </svg>
+
+    <div class="panel-eyebrow">A little guide</div>
+    <div class="panel-title">Find your<br>match</div>
+    <div class="divider"></div>
+    <p class="intro">One jar, ten herbs, infinite results — but here's where to focus your ritual depending on what your hair is asking for.</p>
+
+    <div class="match-row">
+      <div class="concern">For growth &amp; length</div>
+      <div class="answer"><span class="arrow">→</span>Rosemary, Castor &amp; Curry Leaf do the heavy lifting.</div>
+    </div>
+
+    <div class="match-row">
+      <div class="concern">For dandruff &amp; flakes</div>
+      <div class="answer"><span class="arrow">→</span>Lean on Oregano, Lavender &amp; Peppermint.</div>
+    </div>
+
+    <div class="match-row">
+      <div class="concern">For shine &amp; softness</div>
+      <div class="answer"><span class="arrow">→</span>Hibiscus &amp; Vitamin E bring the glow.</div>
+    </div>
+
+    <div class="match-row">
+      <div class="concern">For breakage &amp; thinning</div>
+      <div class="answer"><span class="arrow">→</span>Black Seed, Castor &amp; Vitamin E rebuild strength.</div>
+    </div>
+
+    <div class="match-row">
+      <div class="concern">For an itchy, irritated scalp</div>
+      <div class="answer"><span class="arrow">→</span>Aloe Vera, Lavender &amp; Peppermint calm &amp; cool.</div>
+    </div>
+
+    <div class="match-row">
+      <div class="concern">For postnatal &amp; stress shedding</div>
+      <div class="answer"><span class="arrow">→</span>The full blend — gentle daily massage, twice a week.</div>
+    </div>
+
+    <div class="promise-block">
+      <div class="label">Our Promise</div>
+      <div class="promise">No silicones, no parabens, no sulphates. Just herbs, oils &amp; a little time.</div>
+    </div>
+  </div>
+
+  <div class="fold-line-1"></div>
+  <div class="fold-line-2"></div>
+</section>
+
+</body>
+</html>
