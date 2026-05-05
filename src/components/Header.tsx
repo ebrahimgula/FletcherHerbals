@@ -11,6 +11,7 @@ export default function Header() {
     { label: "Discover", href: "#hero" },
     { label: "Ingredients", href: "#botanical" },
     { label: "Our Story", href: "#our-story" },
+    { label: "Order", href: "#order" },
   ];
 
   return (

@@ -4,6 +4,7 @@ import Origins from "@/components/Origins";
 import BotanicalLibrary from "@/components/BotanicalLibrary";
 import Timeline from "@/components/Timeline";
 import OurStory from "@/components/OurStory";
+import OrderSection from "@/components/OrderSection";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -16,6 +17,7 @@ export default function Home() {
         <Timeline />
         <BotanicalLibrary />
         <OurStory />
+        <OrderSection />
         <Footer />
       </main>
     </>
