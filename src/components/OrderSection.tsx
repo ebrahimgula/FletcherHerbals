@@ -85,7 +85,7 @@ export default function OrderSection() {
                 </p>
                 <div className="flex items-baseline gap-2 mb-6">
                   <span className="font-serif text-6xl md:text-7xl text-[#B89968] leading-none">
-                    $35
+                    $28
                   </span>
                   <span className="font-serif italic text-base md:text-lg text-[var(--color-cream-dark)]">
                     AUD

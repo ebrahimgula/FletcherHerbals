@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { Menu, X, ShoppingCart } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -42,13 +42,6 @@ export default function Header() {
 
         {/* Right Section */}
         <div className="flex items-center gap-4">
-          <button
-            aria-label="Shopping cart"
-            className="p-2 hover:bg-white/20 rounded-lg transition-colors"
-          >
-            <ShoppingCart className="w-5 h-5 text-[var(--color-foreground)]" />
-          </button>
-
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
