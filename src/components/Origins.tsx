@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function Origins() {
   return (
-    <section className="relative w-full py-24 md:py-40 bg-[var(--color-cream)] overflow-hidden">
+    <section id="origins" className="relative w-full py-24 md:py-40 bg-[var(--color-cream)] overflow-hidden">
       <div className="container mx-auto px-6 max-w-6xl flex flex-col md:flex-row items-center gap-16 md:gap-24">
         {/* Text Content */}
         <motion.div

@@ -142,31 +142,6 @@ export default function OrderSection() {
           </div>
         </motion.div>
 
-        {/* Trust signals */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 mt-12 text-sm text-[var(--color-sage-dark)]"
-        >
-          <span className="flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#C26B4F]" />
-            <span className="font-serif italic">100% Natural</span>
-          </span>
-          <span className="flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#C26B4F]" />
-            <span className="font-serif italic">Small Batch</span>
-          </span>
-          <span className="flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#C26B4F]" />
-            <span className="font-serif italic">Hand-poured</span>
-          </span>
-          <span className="flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#C26B4F]" />
-            <span className="font-serif italic">No Sulphates or Parabens</span>
-          </span>
-        </motion.div>
       </div>
     </section>
   );

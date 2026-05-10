@@ -42,7 +42,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center md:items-start gap-12 text-white/70 font-light text-sm">
           <div className="flex flex-col items-center md:items-start">
             <h2 className="font-serif text-3xl text-white mb-2 italic">
-              fletcher
+              Fletcher Herbals
             </h2>
             <p>Homegrown in Fletcher, NSW 2287</p>
             <p className="mt-4 text-xs">Email: hello@fletcherherbals.com</p>
@@ -68,13 +68,13 @@ export default function Footer() {
               <h3 className="text-white font-serif text-sm uppercase tracking-wide mb-2">
                 Learn
               </h3>
-              <a href="#origins" className="hover:text-white transition-colors">
+              <a href="#our-story" className="hover:text-white transition-colors">
                 Our Story
               </a>
               <a href="#botanical" className="hover:text-white transition-colors">
                 Ingredients
               </a>
-              <a href="#dosage" className="hover:text-white transition-colors">
+              <a href="#how-to-use" className="hover:text-white transition-colors">
                 How to Use
               </a>
             </div>

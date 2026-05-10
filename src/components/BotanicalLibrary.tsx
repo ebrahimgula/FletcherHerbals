@@ -74,6 +74,20 @@ const INGREDIENTS = [
       "Antioxidant protection — shields hair from damage and locks in shine.",
     category: "shine",
   },
+  {
+    name: "Pumpkin Oil",
+    latin: "Cucurbita pepo",
+    benefit:
+      "Rich in vitamins and minerals — nourishes deeply and promotes a strong, healthy scalp.",
+    category: "growth",
+  },
+  {
+    name: "Coconut Oil",
+    latin: "Cocos nucifera",
+    benefit:
+      "Deeply moisturizing and antibacterial — creates a protective seal and enhances natural shine.",
+    category: "shine",
+  },
 ];
 
 const FILTERS = [
